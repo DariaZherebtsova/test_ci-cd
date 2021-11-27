@@ -1,0 +1,23 @@
+name: Linting
+
+on:
+  push:
+    branches-ignore: main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # копирует наш проект, как в докере 
+      # uses - когда используем чужие скрипты
+      - uses: actions/checkout@v2
+      # еще нам нужна нода 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - run: npm install
+      # name - выведеться в консоле
+      - name: Run the lint script
+        run: npm run lint
